@@ -11,7 +11,7 @@
 #define SAVE 13
 #define EXIT 15
 
-int x, y;
+int x, y; // x,y 좌표
 
 typedef struct student {
 
