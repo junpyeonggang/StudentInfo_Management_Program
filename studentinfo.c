@@ -25,3 +25,29 @@ typedef struct student {
 
 student* head, * tail;		
 
+void cursor(bool flag, int size)
+{	
+
+	CONSOLE_CURSOR_INFO cursor;
+	cursor.bVisible = flag;
+	cursor.dwSize = size;
+	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor);
+}
+
+void cursor_move(int q)	
+{
+	cursor_toxy(3, y);
+	printf("  ");	
+	cursor_toxy(3, y = y + q);	
+	if (y > 15) y = 5;	
+	if (y < 5) y = 15;
+	cursor_toxy(3, y);
+
+	printf("▶");		
+}
+
+void cursor_toxy(int x, int y)	
+{
+	COORD position = { x , y };	
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), position);
+}
