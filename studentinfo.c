@@ -192,6 +192,74 @@ void update() {
 	}
 }
 
+void search(void)	
+{
+	char name[15];
+	student* a;
+
+	system("cls");
+	printf("\n검색할 학생의 이름 : ");
+
+	fgets(name, 15, stdin);
+
+	a = head -> next;	
+
+	while (1)
+	{
+		if (!(strcmp(name, a -> name))) {	
+			printf("-----------------------------\n");
+			printf(" 이름  :  %s", a -> name);
+			printf(" 소속  :  %s", a -> major);
+			printf(" 나이  :  %s", a -> age);
+			printf(" 전화번호  :  %s", a -> phone_number);
+			printf("-----------------------------\n");
+			break;
+		}
+		if (a == tail) {
+			printf("\n해당 학생의 정보는 없습니다.\n");
+			break;
+		}
+		a = a -> next;
+	}
+	printf("\n");
+	printf("아무 숫자 입력 : 메뉴로 돌아가기");
+	_getch();
+}
+
+
+
+void upload(void)	
+{
+	student* s, * a;
+	FILE* f;
+
+	s = head;
+	a = s -> next;
+	while (a != tail)
+	{
+		s = a;
+		a = s -> next;	
+		free(s);
+	}
+	head -> next = tail;
+
+	if ((f = fopen("student_information.txt", "rb")) == NULL) return;
+
+
+	while (1)	
+	{
+		s = (student*)malloc(sizeof(student));
+		if (!fread(s, 100, 1, f))
+		{
+			free(s);
+			break;		
+		}
+		s -> next = head -> next;
+		head -> next = s;
+	}
+	fclose(f);
+}
+
 void cursor_toxy(int x, int y)	
 {
 	COORD position = { x , y };	
