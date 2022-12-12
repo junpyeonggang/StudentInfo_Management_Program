@@ -67,7 +67,22 @@ void cursor(bool flag, int size)
 	cursor.dwSize = size;
 	SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor);
 }
+void main_menu()		
+{
+	system("cls");		
+	cursor_toxy(3, 2);	 printf("||학생 정보 관리 프로그램||");
 
+	cursor_toxy(6, INSERT);	printf("1.입력");
+	cursor_toxy(6, PRINT);	printf("2.출력");
+	cursor_toxy(6, SEARCH);	printf("3.검색");
+	cursor_toxy(6, UPDATE);	printf("4.수정");
+	cursor_toxy(6, SAVE);	printf("5.저장");
+	cursor_toxy(6, EXIT);	printf("6.종료");
+
+	cursor_toxy(3, y);	
+	printf("▶");
+
+}
 void cursor_move(int q)	
 {
 	cursor_toxy(3, y);
