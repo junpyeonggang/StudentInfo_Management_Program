@@ -66,6 +66,76 @@ student* insert(void)
 	return a;
 }
 
+void print()	
+{
+	student* a;
+	int number = 1;
+	
+	a = head -> next;	
+
+	if (head -> next == tail) {
+		cursor_toxy(20, PRINT);
+		printf("저장된 정보가 없습니다.");
+		Sleep(1000);
+	}
+
+	system("cls");
+	while (a != tail) {
+		printf("-----------------------\n");
+		printf("%d ", number++);
+		printf(" 이    름 : %s", a->name);
+		printf("   전    공 : %s", a->major);
+		printf("   나    이 : %s", a->age);
+		printf("   전화번호 : %s", a->phone_number);
+	
+		a = a->next;
+		printf("-----------------------\n");
+	}
+
+	printf("\n");
+
+	printf("아무 숫자 입력 : 메뉴로 돌아가기");
+	_getch();	
+}
+
+void update() {	
+	char name[15];
+	student* a;
+
+	system("cls");
+	printf("\n수정할 학생의 이름 : ");
+
+	fgets(name, 15, stdin);
+
+	a = head->next;
+
+	while (1) {
+		if (!(strcmp(name, a->name))) {	
+			cursor_toxy(2, 5); printf("수정할 정보 입력");
+
+			cursor_toxy(2, 7); printf("이름 :");
+			cursor_toxy(9, 7); fgets(a->name, 15, stdin);
+			cursor_toxy(2, 9); printf("전공 :");
+			cursor_toxy(9, 9); fgets(a->major, 25, stdin);
+			cursor_toxy(2, 11); printf("나이 :");
+			cursor_toxy(9, 11); fgets(a->age, 10, stdin);
+			cursor_toxy(2, 13);	printf("전화번호 :");
+			cursor_toxy(13, 13); fgets(a->phone_number, 25, stdin);	
+
+			printf("\n\n 수정 완료");
+
+			Sleep(1000);	
+			break;
+		}
+		if (a == tail) {	
+			printf("\n해당 학생의 정보는 없습니다.\n");
+			Sleep(1000);	
+			break;
+		}
+		a = a -> next;	
+	}
+}
+
 void cursor_toxy(int x, int y)	
 {
 	COORD position = { x , y };	
