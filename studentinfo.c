@@ -96,6 +96,13 @@ void cursor_move(int q)
 }
 
 
+void make_node(void)	
+{
+	head = (student*)malloc(sizeof(student));
+	tail = (student*)malloc(sizeof(student));
+	head -> next = tail;	
+	tail -> next = tail;	
+}
 student* insert(void)	
 {
 	student* a;
