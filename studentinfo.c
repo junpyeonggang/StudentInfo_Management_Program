@@ -25,6 +25,40 @@ typedef struct student {
 
 student* head, * tail;		
 
+int main() {
+	char key;
+	x = 3, y = INSERT;	
+
+	void (*fp)(void) = run;
+
+	cursor(false, 1);	
+	main_menu();	
+	make_node();
+	upload();			
+
+	while (1) {
+		key = _getch();	
+		switch (key) {
+		case 13:	 		
+			fp(y);		
+			break;
+		case 27:		
+			cursor_toxy(5, 20);
+			exit(0);	
+			break;
+		case 72:		
+			cursor_move(-2);
+			break;
+		case 80:		
+			cursor_move(2);
+			break;
+		default:
+			break;
+		}
+	}
+	return 0;
+}
+
 void cursor(bool flag, int size)
 {	
 
